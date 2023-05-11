@@ -1,9 +1,25 @@
-import { sum } from "./main.js";
+import Fastify from "fastify";
 
-it("should return true", () => {
-  expect(true);
+const fastify = Fastify({
+  logger: true,
 });
 
-it("should return 3", () => {
-  expect(sum(1, 2)).toBe(3);
+let PORT = 0;
+
+beforeEach(async () => {
+  try {
+    await fastify.listen({ port: 3000 });
+    PORT = fastify.server.address().port;
+  } catch (error) {
+    fastify.log.error(error);
+    process.exit(1);
+  }
+});
+
+afterEach(async () => {
+  await fastify.close();
+});
+it("should return por 3000", async () => {
+  expect(PORT).toBe(3000);
+  expect(PORT).not.toBe(8080);
 });
