@@ -8,6 +8,9 @@ fastify.get("/", (request, reply) => {
   reply.send("Hello world fastify");
 });
 
+export function sum(a, b) {
+  return a + b;
+}
 const start = async () => {
   try {
     await fastify.listen({ port: 3000 });
