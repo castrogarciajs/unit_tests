@@ -6,7 +6,6 @@ it("should return equal", () => {
 it("should return not", () => {
   /**@assert not to*/
   expect(3).not.toBe(4);
-  expect(3).not.to.toBe(4);
 });
 
 it("should return toBeCloseTo", () => {
@@ -14,4 +13,15 @@ it("should return toBeCloseTo", () => {
   let result = 0.2 + 0.1;
   expect(result).toBeCloseTo(0.3, 5);
   expect(result).not.toBeCloseTo(0.3, 50);
+});
+
+it("should return toBeDefined", () => {
+  function defined() {
+    return 1;
+  }
+  expect(defined()).toBeDefined();
+});
+
+it("should return false", () => {
+  expect(false).toBeFalsy();
 });
