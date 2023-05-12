@@ -42,6 +42,7 @@ it("should return equal", () => {
 
 it("should return promise", () => {
   const promise = Promise.resolve("lemon");
+
   expect(promise).resolves.toBe("lemon");
   expect(promise).resolves.not.toBe("banana");
 });
