@@ -31,3 +31,7 @@ it("should return undifend", () => {
   expect(things).not.toBeDefined();
   expect(things).toBeUndefined();
 });
+
+it("should return NaN", () => {
+  expect(2 * "h").toBeNaN();
+});
