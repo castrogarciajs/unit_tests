@@ -25,3 +25,9 @@ it("should return toBeDefined", () => {
 it("should return false", () => {
   expect(false).toBeFalsy();
 });
+
+it("should return undifend", () => {
+  let things;
+  expect(things).not.toBeDefined();
+  expect(things).toBeUndefined();
+});
