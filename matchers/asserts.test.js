@@ -25,3 +25,24 @@ it("should return toBeDefined", () => {
 it("should return false", () => {
   expect(false).toBeFalsy();
 });
+
+it("should return undifend", () => {
+  let things;
+  expect(things).not.toBeDefined();
+  expect(things).toBeUndefined();
+});
+
+it("should return NaN", () => {
+  expect(2 * "h").toBeNaN();
+});
+
+it("should return equal", () => {
+  expect(2).toEqual(2);
+});
+
+it("should return promise", () => {
+  const promise = Promise.resolve("lemon");
+
+  expect(promise).resolves.toBe("lemon");
+  expect(promise).resolves.not.toBe("banana");
+});
