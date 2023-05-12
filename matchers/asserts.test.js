@@ -39,3 +39,9 @@ it("should return NaN", () => {
 it("should return equal", () => {
   expect(2).toEqual(2);
 });
+
+it("should return promise", () => {
+  const promise = Promise.resolve("lemon");
+  expect(promise).resolves.toBe("lemon");
+  expect(promise).resolves.not.toBe("banana");
+});
