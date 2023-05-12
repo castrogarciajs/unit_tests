@@ -35,3 +35,7 @@ it("should return undifend", () => {
 it("should return NaN", () => {
   expect(2 * "h").toBeNaN();
 });
+
+it("should return equal", () => {
+  expect(2).toEqual(2);
+});
