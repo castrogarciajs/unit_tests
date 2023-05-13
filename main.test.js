@@ -1,25 +1,45 @@
-import Fastify from "fastify";
+import fastify from "./app.js";
+import request from "supertest";
 
-const fastify = Fastify({
-  logger: true,
+fastify.get("/", (_, reply) => {
+  reply.send("Hello, World");
 });
 
-let PORT = 0;
+describe("Server Test", () => {
+  beforeAll(async () => {
+    try {
+      await fastify.listen({ port: 3000 });
+    } catch (error) {
+      fastify.log.error(error);
+    }
+  });
 
-beforeEach(async () => {
-  try {
-    await fastify.listen({ port: 3000 });
-    PORT = fastify.server.address().port;
-  } catch (error) {
-    fastify.log.error(error);
-    process.exit(1);
-  }
-});
+  afterAll(async () => {
+    await fastify.close();
+  });
 
-afterEach(async () => {
-  await fastify.close();
-});
-it("should return por 3000", async () => {
-  expect(PORT).toBe(3000);
-  expect(PORT).not.toBe(8080);
+  it("should return port 3000", async () => {
+    expect(fastify.server.address().port).toBe(3000);
+    expect(fastify.server.address().port).not.toBe(8080);
+  });
+
+  it("should return status 200", async () => {
+    const res = await request(fastify.server).get("/");
+
+    expect(res.status).toBe(200);
+    expect(res.status).not.toBe(404);
+  });
+
+  it("should return status 404", async () => {
+    const res = await request(fastify.server).get("/fastify");
+
+    expect(res.status).toBe(404);
+    expect(res.status).not.toBe(200);
+  });
+
+  it("should return Hello, World", async () => {
+    const res = await request(fastify.server).get("/");
+
+    expect(res.text).toMatch("Hello, World");
+  });
 });

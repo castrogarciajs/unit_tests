@@ -1,16 +1,9 @@
-import Fastify from "fastify";
-
-const fastify = Fastify({
-  logger: true,
-});
+import fastify from "./app.js";
 
 fastify.get("/", (request, reply) => {
   reply.send("Hello world fastify");
 });
 
-export function sum(a, b) {
-  return a + b;
-}
 const start = async () => {
   try {
     await fastify.listen({ port: 3000 });
