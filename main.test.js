@@ -42,4 +42,10 @@ describe("Server Test", () => {
 
     expect(res.text).toMatch("Hello, World");
   });
+
+  it("should return", async () => {
+    const res = await request(fastify.server).get("/");
+
+    expect(res.ok).toBeTruthy();
+  });
 });
